@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* HEADER */
+#header {
+    background: #4A00E0;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+/* CONTAINER PRINCIPAL */
+#container-login {
+    display: flex;
+    height: 90vh;
+}
+
+/* ESQUERDA */
+#left-panel {
+    width: 50%;
+    background: #5B00FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#login-box {
+    text-align: center;
+    width: 70%;
+}
+
+#login-title {
+    color: white;
+    font-size: 35px;
+    margin-bottom: 30px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+/* BOTÕES */
+#btn-cadastro,
+#btn-login {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+#btn-cadastro {
+    background: linear-gradient(to right, #FF7F00, #FF4500);
+}
+
+#btn-login {
+    background: linear-gradient(to right, #FF7F00, #FF4500);
+}
+
+#forgot-password {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* DIREITA */
+#right-panel {
+    width: 50%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#login-illustration {
+    width: 75%;
+}
+
+/* FOOTER */
+#footer {
+    background: #4A00E0;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
