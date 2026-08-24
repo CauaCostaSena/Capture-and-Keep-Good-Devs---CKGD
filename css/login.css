@@ -1,0 +1,150 @@
+/* ============================================================================
+   CKGD - Login (index.html)
+   Depende de css/base.css
+   ============================================================================ */
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#main\.login {
+  flex: 1;
+  display: flex;
+}
+
+#container-login {
+  display: flex;
+  width: 100%;
+}
+
+/* ESQUERDA - FORMULÁRIO */
+#left-panel {
+  width: 50%;
+  background: var(--bg-panel);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+#login-box {
+  text-align: center;
+  width: 100%;
+  max-width: 360px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.brand .brand-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent-light), var(--accent-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 17px;
+  box-shadow: 0 8px 18px rgba(124,92,255,0.35);
+}
+
+.brand .brand-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: .5px;
+}
+
+#login-title {
+  color: var(--text);
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+}
+
+.login-subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0 0 30px 0;
+}
+
+.input-group {
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--card-border);
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  font-size: 15px;
+  font-family: var(--font);
+  box-sizing: border-box;
+  transition: border-color .15s ease, background .15s ease;
+}
+
+.input-group input::placeholder {
+  color: var(--muted);
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(255,255,255,0.08);
+}
+
+#forgot-password {
+  display: inline-block;
+  margin-top: 16px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+#forgot-password:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+/* DIREITA - ILUSTRAÇÃO */
+#right-panel {
+  width: 50%;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(124,92,255,0.18), transparent 60%),
+    var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#login-illustration {
+  width: 65%;
+  max-width: 420px;
+}
+
+/* FOOTER */
+#footer {
+  background: var(--bg-panel);
+  color: var(--muted);
+  text-align: center;
+  padding: 14px;
+  font-size: 13px;
+}
+
+@media (max-width: 800px) {
+  #container-login { flex-direction: column; }
+  #left-panel, #right-panel { width: 100%; }
+  #right-panel { display: none; }
+}

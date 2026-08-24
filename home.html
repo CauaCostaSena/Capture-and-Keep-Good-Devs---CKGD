@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Busque desenvolvedores com base em dados técnicos reais do GitHub.">
+    <title>CKGD - Buscar Desenvolvedores</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body class="app-shell">
+
+    <aside class="sidebar" aria-label="Barra lateral">
+        <div class="company-card" role="region" aria-labelledby="company-name">
+            <div class="logo" aria-hidden="true" id="company-logo">--</div>
+
+            <div class="company-info">
+                <h1 id="company-name" class="company-name">Carregando...</h1>
+                <p class="company-location" id="company-location"></p>
+            </div>
+        </div>
+
+        <nav class="menu-card" aria-label="Menu principal">
+            <a class="menu-item" href="favoritos.html"><i class="fa-solid fa-bookmark"></i> Salvos</a>
+            <a class="menu-item active" href="home.html"><i class="fa-solid fa-magnifying-glass"></i> Análises</a>
+            <a class="menu-item" href="config.html"><i class="fa-solid fa-gear"></i> Configurações</a>
+            <a class="menu-item" id="menu-suporte"><i class="fa-solid fa-headset"></i> Suporte</a>
+            <a class="menu-item" id="menu-sair"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+
+        <div class="search-bar">
+            <input type="text" id="input-termo" placeholder="Pesquise desenvolvedores (ex: fullstack, react, api)">
+            <i class="fa-solid fa-magnifying-glass" id="btn-buscar"></i>
+        </div>
+
+        <!-- ESTADO: aguardando busca -->
+        <div class="status-center" id="estado-aguardando">
+            <div class="loader-container">
+                <div class="dashed-circle"></div>
+                <i class="fa-solid fa-hourglass-half hourglass-icon"></i>
+            </div>
+            <h2 class="status-text">
+                Esperando para encontrar o<br>
+                próximo talento
+            </h2>
+        </div>
+
+        <!-- ESTADO: carregando resultados -->
+        <div class="status-center" id="estado-carregando" style="display:none;">
+            <div class="loader-container">
+                <div class="dashed-circle spinning"></div>
+            </div>
+            <h2 class="status-text">Buscando no GitHub...</h2>
+        </div>
+
+        <!-- ESTADO: erro -->
+        <div class="status-center" id="estado-erro" style="display:none;">
+            <h2 class="status-text" id="erro-mensagem"></h2>
+        </div>
+
+        <!-- ESTADO: resultados -->
+        <div class="results-area" id="estado-resultados" style="display:none;">
+            <div class="results-list" id="results-list"></div>
+
+            <aside class="filters-panel">
+                <h3>Definir Filtros</h3>
+
+                <label class="filters-label">Linguagem</label>
+                <div class="lang-toggles" id="lang-toggles">
+                    <button type="button" data-lang="JavaScript">JavaScript</button>
+                    <button type="button" data-lang="TypeScript">TypeScript</button>
+                    <button type="button" data-lang="Python">Python</button>
+                    <button type="button" data-lang="Java">Java</button>
+                    <button type="button" data-lang="C#">C#</button>
+                    <button type="button" data-lang="C++">C++</button>
+                    <button type="button" data-lang="PHP">PHP</button>
+                    <button type="button" data-lang="Go">Go</button>
+                </div>
+
+                <label class="filters-label" for="input-localizacao">Localização</label>
+                <input type="text" id="input-localizacao" placeholder="ex: Brasil, São Paulo">
+
+                <button type="button" id="btn-filtrar">FILTRAR</button>
+                <button type="button" id="btn-limpar-filtros">Limpar filtros</button>
+            </aside>
+        </div>
+
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/home.js"></script>
+</body>
+</html>

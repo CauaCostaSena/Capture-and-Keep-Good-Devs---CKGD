@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Candidatos favoritados e avaliados pela sua empresa.">
+    <title>Salvos - CKGD</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/favoritos.css">
+</head>
+<body class="app-shell">
+
+    <aside class="sidebar" aria-label="Barra lateral">
+        <div class="company-card">
+            <div class="logo" id="company-logo">--</div>
+            <div class="company-info">
+                <h1 id="company-name" class="company-name">Carregando...</h1>
+                <p class="company-location" id="company-location"></p>
+            </div>
+        </div>
+
+        <nav class="menu-card">
+            <a class="menu-item active" href="favoritos.html"><i class="fa-solid fa-bookmark"></i> Salvos</a>
+            <a class="menu-item" href="home.html"><i class="fa-solid fa-magnifying-glass"></i> Análises</a>
+            <a class="menu-item" href="config.html"><i class="fa-solid fa-gear"></i> Configurações</a>
+            <a class="menu-item" id="menu-suporte"><i class="fa-solid fa-headset"></i> Suporte</a>
+            <a class="menu-item" id="menu-sair"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <h1 class="favoritos-title">Candidatos Salvos</h1>
+
+        <div id="favoritos-carregando" class="status-center">
+            <h2 class="status-text">Carregando...</h2>
+        </div>
+
+        <div id="favoritos-vazio" class="status-center" style="display:none;">
+            <h2 class="status-text">Você ainda não salvou nenhum candidato.</h2>
+        </div>
+
+        <div id="favoritos-lista" class="favoritos-lista"></div>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/favoritos.js"></script>
+</body>
+</html>

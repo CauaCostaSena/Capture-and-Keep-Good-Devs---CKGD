@@ -1,0 +1,68 @@
+/* ============================================================================
+   CKGD - Candidatos salvos (favoritos.html)
+   Depende de css/base.css
+   ============================================================================ */
+
+.favoritos-title {
+  font-size: 26px;
+  margin: 0 0 24px 0;
+}
+
+.favoritos-lista {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  max-width: 900px;
+}
+
+.favorito-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  box-shadow: var(--card-shadow);
+}
+
+.favorito-card h3 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+}
+
+.favorito-card .username {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0 0 10px 0;
+}
+
+.favorito-card .comentario {
+  background: rgba(255,255,255,0.05);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  font-size: 13px;
+  margin-bottom: 10px;
+  color: var(--muted-strong);
+}
+
+.favorito-card .privada-tag {
+  display: inline-block;
+  background: var(--accent-soft-strong);
+  padding: 3px 10px;
+  border-radius: 10px;
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+
+.favorito-card a {
+  color: var(--accent-light);
+  font-size: 13px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.favorito-card a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 800px) {
+  .favoritos-lista { grid-template-columns: 1fr; }
+}

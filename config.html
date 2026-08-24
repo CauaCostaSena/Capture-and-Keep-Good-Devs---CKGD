@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Gerencie os dados da sua empresa e do seu plano de assinatura.">
+<title>Configurações da Conta - CKGD</title>
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/config.css">
+</head>
+<body class="app-shell">
+
+    <aside class="sidebar" aria-label="Barra lateral">
+        <div class="company-card">
+            <div class="logo" id="company-logo">--</div>
+            <div class="company-info">
+                <h1 id="company-name" class="company-name">Carregando...</h1>
+                <p class="company-location" id="company-location"></p>
+            </div>
+        </div>
+
+        <nav class="menu-card">
+            <a class="menu-item" href="favoritos.html"><i class="fa-solid fa-bookmark"></i> Salvos</a>
+            <a class="menu-item" href="home.html"><i class="fa-solid fa-magnifying-glass"></i> Análises</a>
+            <a class="menu-item active" href="config.html"><i class="fa-solid fa-gear"></i> Configurações</a>
+            <a class="menu-item" id="menu-suporte"><i class="fa-solid fa-headset"></i> Suporte</a>
+            <a class="menu-item" id="menu-sair"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+        </nav>
+    </aside>
+
+    <main class="main-content config-main">
+        <h1>Configurações da Conta</h1>
+
+        <div class="config-section">
+            <h2 class="section-title">Perfil</h2>
+            <div class="config-card">
+                <div class="item item-photo">
+                    <div class="item-photo-info">
+                        <div class="item-photo-avatar" id="foto-preview">--</div>
+                        <span class="item-label">Foto de Perfil</span>
+                    </div>
+                    <button type="button" class="btn btn-secondary item-btn-sm" id="btn-alterar-foto">Alterar</button>
+                    <input type="file" id="input-foto" accept="image/png,image/jpeg,image/webp" hidden>
+                </div>
+                <div class="item item-editable" data-field="nomeEmpresa">
+                    <span class="item-label">Nome da Empresa</span>
+                    <div class="item-edit-area">
+                        <span class="item-value" data-display>—</span>
+                        <input type="text" class="item-input" data-input hidden>
+                        <button type="button" class="item-icon-btn" data-action="edit" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                        <button type="button" class="item-icon-btn item-icon-save" data-action="save" title="Salvar" hidden><i class="fa-solid fa-check"></i></button>
+                        <button type="button" class="item-icon-btn item-icon-cancel" data-action="cancel" title="Cancelar" hidden><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+                <div class="item">
+                    <span class="item-label">Localidade do Setor</span>
+                    <span class="item-value" id="item-localidade">—</span>
+                </div>
+                <div class="item item-interactive" id="menu-assinatura">
+                    <span class="item-label">Plano de Assinatura</span>
+                    <span class="item-value" id="item-plano">—</span>
+                    <i class="fa-solid fa-chevron-right item-arrow"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="config-section">
+            <h2 class="section-title">Segurança</h2>
+            <div class="config-card">
+                <div class="item item-disabled">
+                    <span class="item-label">Alterar Senha</span>
+                    <span class="item-soon">Em breve</span>
+                </div>
+                <div class="item item-disabled">
+                    <span class="item-label">Autenticação de Dois Fatores</span>
+                    <span class="item-soon">Em breve</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="config-section">
+            <h2 class="section-title">Contato</h2>
+            <div class="config-card">
+                <div class="item">
+                    <span class="item-label">E-mail Cadastrado</span>
+                    <span class="item-value" id="item-email">—</span>
+                </div>
+                <div class="item item-editable" data-field="telefone">
+                    <span class="item-label">Número de Telefone</span>
+                    <div class="item-edit-area">
+                        <span class="item-value" data-display>Não informado</span>
+                        <input type="tel" class="item-input" data-input placeholder="(00) 00000-0000" hidden>
+                        <button type="button" class="item-icon-btn" data-action="edit" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                        <button type="button" class="item-icon-btn item-icon-save" data-action="save" title="Salvar" hidden><i class="fa-solid fa-check"></i></button>
+                        <button type="button" class="item-icon-btn item-icon-cancel" data-action="cancel" title="Cancelar" hidden><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="config-section">
+            <h2 class="section-title">Gerenciar Conta</h2>
+            <div class="config-card">
+                <div class="item item-disabled">
+                    <span class="item-label">Baixar Dados da Conta</span>
+                    <span class="item-soon">Em breve</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<script src="js/api.js"></script>
+<script src="js/config.js"></script>
+</body>
+</html>

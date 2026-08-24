@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Redefina a senha da sua conta CKGD.">
+    <title>Recuperar Senha - CKGD</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/cadastro.css">
+    <link rel="stylesheet" href="css/recuperar-senha.css">
+</head>
+<body>
+
+    <main id="main.recuperar">
+        <div id="container-recuperar">
+
+            <div id="left-panel-recuperar">
+                <div id="cadastro-box">
+
+                    <div class="brand brand-center">
+                        <span class="brand-mark" aria-hidden="true">C</span>
+                        <span class="brand-name">CKGD</span>
+                    </div>
+
+                    <h2 id="cadastro-title">Recuperar senha</h2>
+                    <p id="cadastro-subtitle">Confirme o CNPJ e o e-mail cadastrados da sua empresa para definir uma nova senha.</p>
+
+                    <form id="form-recuperar">
+
+                        <div class="input-group">
+                            <label for="input-cnpj">CNPJ (14 dígitos)</label>
+                            <input type="text" id="input-cnpj" maxlength="14" placeholder="Somente números" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="input-email">E-mail cadastrado</label>
+                            <input type="email" id="input-email" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="input-nova-senha">Nova senha</label>
+                            <input type="password" id="input-nova-senha" minlength="6" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="input-confirmar-senha">Confirmar nova senha</label>
+                            <input type="password" id="input-confirmar-senha" minlength="6" required>
+                        </div>
+
+                        <button type="submit" id="btn-redefinir" class="btn btn-primary btn-block">Redefinir senha</button>
+                        <a href="index.html" id="voltar-login">Voltar ao Login</a>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer id="footer">
+        <p>&copy; 2026 CKGD — Capture and Keep Good Devs</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/recuperar-senha.js"></script>
+</body>
+</html>

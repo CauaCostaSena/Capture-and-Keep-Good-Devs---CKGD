@@ -1,0 +1,138 @@
+/* ============================================================================
+   CKGD - Cadastro de empresa (cadastro.html)
+   Depende de css/base.css e css/login.css (usa .input-group, .brand, #footer)
+   ============================================================================ */
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#main\.cadastro {
+  flex: 1;
+  display: flex;
+}
+
+#container-cadastro {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(124,92,255,0.14), transparent 55%),
+    var(--bg-panel);
+  padding: 48px 20px;
+  box-sizing: border-box;
+}
+
+#left-panel-cadastro {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#cadastro-box {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: var(--card-shadow);
+}
+
+.brand-center {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+#cadastro-title {
+  color: var(--text);
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  text-align: center;
+}
+
+#cadastro-subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0 0 28px 0;
+  text-align: center;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+#form-cadastro .input-group {
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+#form-cadastro label {
+  display: block;
+  font-size: 13px;
+  color: var(--muted-strong);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+#form-cadastro input,
+#form-cadastro select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--card-border);
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  font-size: 14px;
+  font-family: var(--font);
+  box-sizing: border-box;
+  margin-bottom: 0;
+  transition: border-color .15s ease, background .15s ease;
+}
+
+#form-cadastro input::placeholder {
+  color: var(--muted);
+}
+
+#form-cadastro select option {
+  background: var(--bg-panel);
+  color: var(--text);
+}
+
+#form-cadastro input:focus,
+#form-cadastro select:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(255,255,255,0.08);
+}
+
+#btn-finalizar-cadastro {
+  margin-top: 12px;
+}
+
+#voltar-login {
+  display: block;
+  text-align: center;
+  margin-top: 16px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+#voltar-login:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+@media (max-width: 560px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  #cadastro-box { padding: 24px; }
+}

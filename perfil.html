@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Perfil técnico completo do candidato, com repositórios e estatísticas do GitHub.">
+    <title>Perfil do Candidato - CKGD</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/perfil.css">
+</head>
+<body class="app-shell">
+
+    <aside class="sidebar" aria-label="Barra lateral">
+        <div class="company-card">
+            <div class="logo" id="company-logo">--</div>
+            <div class="company-info">
+                <h1 id="company-name" class="company-name">Carregando...</h1>
+                <p class="company-location" id="company-location"></p>
+            </div>
+        </div>
+
+        <nav class="menu-card">
+            <a class="menu-item" href="favoritos.html"><i class="fa-solid fa-bookmark"></i> Salvos</a>
+            <a class="menu-item active" href="home.html"><i class="fa-solid fa-magnifying-glass"></i> Análises</a>
+            <a class="menu-item" href="config.html"><i class="fa-solid fa-gear"></i> Configurações</a>
+            <a class="menu-item" id="menu-suporte"><i class="fa-solid fa-headset"></i> Suporte</a>
+            <a class="menu-item" id="menu-sair"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+
+        <a href="home.html" id="btn-voltar"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+
+        <div id="perfil-carregando" class="status-center">
+            <h2 class="status-text">Carregando perfil...</h2>
+        </div>
+
+        <div id="perfil-erro" class="status-center" style="display:none;">
+            <h2 class="status-text" id="perfil-erro-msg"></h2>
+        </div>
+
+        <div id="perfil-container" class="perfil-container" style="display:none;">
+
+            <div class="perfil-header">
+                <img id="perfil-avatar" src="" alt="Avatar do candidato">
+                <div>
+                    <h1 id="perfil-nome"></h1>
+                    <p id="perfil-username" class="perfil-username"></p>
+                    <div class="perfil-badges" id="perfil-badges"></div>
+                </div>
+            </div>
+
+            <div class="perfil-cards">
+                <div class="perfil-card">
+                    <h3><i class="fa-solid fa-code"></i> Inf. Códigos</h3>
+                    <p><i class="fa-solid fa-star"></i> Estrelas: <strong id="perfil-estrelas"></strong></p>
+                    <p><i class="fa-solid fa-folder"></i> Repositórios: <strong id="perfil-repos"></strong></p>
+                    <p><i class="fa-solid fa-display"></i> Linguagem principal: <strong id="perfil-linguagem"></strong></p>
+                </div>
+
+                <div class="perfil-card">
+                    <h3><i class="fa-solid fa-user"></i> Sobre</h3>
+                    <p id="perfil-bio"></p>
+                    <p><i class="fa-solid fa-location-dot"></i> <span id="perfil-localizacao"></span></p>
+                </div>
+
+                <div class="perfil-card">
+                    <h3><i class="fa-solid fa-briefcase"></i> GitHub</h3>
+                    <p><a id="perfil-github-link" href="#" target="_blank" rel="noopener">Ver perfil no GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
+                </div>
+            </div>
+
+            <h2 class="repos-title">Repositórios</h2>
+            <div id="perfil-repos-lista" class="repos-lista"></div>
+
+            <div class="perfil-acoes">
+                <label class="checkbox-privada">
+                    <input type="checkbox" id="input-privada" checked> Avaliação privada
+                </label>
+                <textarea id="input-comentario" placeholder="Adicionar uma avaliação privada sobre este candidato..."></textarea>
+                <div class="perfil-acoes-buttons">
+                    <button id="btn-descartar" class="btn btn-danger">Descartar</button>
+                    <button id="btn-salvar-perfil" class="btn btn-primary">Salvar Perfil</button>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/perfil.js"></script>
+</body>
+</html>

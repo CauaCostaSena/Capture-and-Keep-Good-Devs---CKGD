@@ -1,0 +1,11 @@
+package com.ckgd;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class CkgdApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(CkgdApplication.class, args);
+    }
+}

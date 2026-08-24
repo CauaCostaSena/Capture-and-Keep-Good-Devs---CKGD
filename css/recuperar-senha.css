@@ -1,0 +1,35 @@
+/* ============================================================================
+   CKGD - Recuperar senha (recuperar-senha.html)
+   Depende de css/base.css, css/login.css (.input-group, .brand, #footer) e
+   css/cadastro.css (#cadastro-box, #cadastro-title, #cadastro-subtitle, #voltar-login)
+   ============================================================================ */
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#main\.recuperar {
+  flex: 1;
+  display: flex;
+}
+
+#container-recuperar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(124,92,255,0.14), transparent 55%),
+    var(--bg-panel);
+  padding: 48px 20px;
+  box-sizing: border-box;
+}
+
+#left-panel-recuperar {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
