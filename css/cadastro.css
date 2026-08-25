@@ -118,7 +118,8 @@ body {
   margin-top: 12px;
 }
 
-#voltar-login {
+#voltar-login,
+.link-secundario {
   display: block;
   text-align: center;
   margin-top: 16px;
@@ -127,7 +128,8 @@ body {
   font-size: 14px;
 }
 
-#voltar-login:hover {
+#voltar-login:hover,
+.link-secundario:hover {
   color: var(--text);
   text-decoration: underline;
 }

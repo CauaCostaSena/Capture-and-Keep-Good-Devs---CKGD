@@ -49,6 +49,9 @@ public class SecurityConfig {
                 .requestMatchers("/api/planos/**").permitAll()
                 .requestMatchers("/uploads/**").permitAll()
                 .requestMatchers("/actuator/**").permitAll()
+                .requestMatchers("/api/suporte/**").authenticated()
+                .requestMatchers("/api/candidatos/me").hasRole("CANDIDATO")
+                .requestMatchers("/api/empresas/**", "/api/favoritos/**", "/api/busca/**", "/api/candidatos/**").hasRole("EMPRESA")
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);

@@ -38,6 +38,13 @@ public class Candidato {
     @Column(name = "data_ultima_sincronizacao")
     private LocalDateTime dataUltimaSincronizacao = LocalDateTime.now();
 
+    @Column(name = "email", unique = true, length = 150)
+    private String email;
+
+    @Column(name = "senha")
+    @JsonIgnore
+    private String senha; // hash BCrypt; nulo para candidatos que só existem via sincronização (busca da empresa)
+
     @OneToMany(mappedBy = "candidato", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Repositorio> repositorios = new ArrayList<>();
@@ -71,6 +78,12 @@ public class Candidato {
 
     public LocalDateTime getDataUltimaSincronizacao() { return dataUltimaSincronizacao; }
     public void setDataUltimaSincronizacao(LocalDateTime d) { this.dataUltimaSincronizacao = d; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public String getSenha() { return senha; }
+    public void setSenha(String senha) { this.senha = senha; }
 
     public List<Repositorio> getRepositorios() { return repositorios; }
     public void setRepositorios(List<Repositorio> repositorios) { this.repositorios = repositorios; }

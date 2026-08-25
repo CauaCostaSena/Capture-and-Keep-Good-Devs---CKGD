@@ -342,6 +342,100 @@ textarea {
 }
 
 /* ----------------------------------------------------------------------------
+   Modal genérico (usado por Suporte, Alterar Senha, etc.)
+   ---------------------------------------------------------------------------- */
+.ckgd-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.ckgd-modal-box {
+  background: var(--bg-panel);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--card-shadow);
+  padding: 28px;
+  width: 100%;
+  max-width: 420px;
+  box-sizing: border-box;
+}
+
+.ckgd-modal-box h3 {
+  margin: 0 0 6px 0;
+  font-size: 19px;
+}
+
+.ckgd-modal-subtitle {
+  margin: 0 0 20px 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.ckgd-modal-field {
+  margin-bottom: 14px;
+  text-align: left;
+}
+
+.ckgd-modal-field label {
+  display: block;
+  font-size: 13px;
+  color: var(--muted-strong);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.ckgd-modal-field input,
+.ckgd-modal-field textarea {
+  width: 100%;
+  padding: 11px 13px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--card-border);
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  font-size: 14px;
+  font-family: var(--font);
+  box-sizing: border-box;
+}
+
+.ckgd-modal-field textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.ckgd-modal-field input:focus,
+.ckgd-modal-field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(255,255,255,0.08);
+}
+
+.ckgd-modal-error {
+  color: #ff8585;
+  font-size: 13px;
+  margin: -6px 0 14px 0;
+  min-height: 16px;
+}
+
+.ckgd-modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+.ckgd-modal-actions .btn {
+  padding: 10px 18px;
+  font-size: 14px;
+}
+
+/* ----------------------------------------------------------------------------
    Responsivo — sidebar colapsa em telas pequenas
    ---------------------------------------------------------------------------- */
 @media (max-width: 860px) {

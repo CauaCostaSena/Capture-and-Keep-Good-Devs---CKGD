@@ -33,11 +33,11 @@ form.addEventListener("submit", async function (e) {
         cnpj: document.getElementById("input-cnpj").value.trim().replace(/\D/g, ""),
         email: document.getElementById("input-email").value.trim(),
         senha: document.getElementById("input-senha").value,
-        pais: document.getElementById("input-pais").value.trim() || null,
-        estado: document.getElementById("input-estado").value.trim() || null,
-        cidade: document.getElementById("input-cidade").value.trim() || null,
-        bairro: document.getElementById("input-bairro").value.trim() || null,
-        endereco: document.getElementById("input-endereco").value.trim() || null,
+        pais: document.getElementById("input-pais").value.trim(),
+        estado: document.getElementById("input-estado").value.trim(),
+        cidade: document.getElementById("input-cidade").value.trim(),
+        bairro: document.getElementById("input-bairro").value.trim(),
+        endereco: document.getElementById("input-endereco").value.trim(),
         idPlano: selectPlano.value ? Number(selectPlano.value) : null
     };
 

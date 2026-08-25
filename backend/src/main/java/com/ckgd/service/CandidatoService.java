@@ -61,6 +61,26 @@ public class CandidatoService {
         return resultado;
     }
 
+    /**
+     * Busca o perfil de um usuário específico no GitHub pelo username e sincroniza
+     * localmente (mesma lógica usada na busca da empresa). Usado no autocadastro do candidato.
+     */
+    @Transactional
+    public Candidato sincronizarPorUsername(String usernameGithub) {
+        UserDetail detalhe = gitHubService.buscarDetalhesUsuario(usernameGithub);
+        if (detalhe == null || detalhe.id == null) {
+            throw new ResourceNotFoundException("Usuário do GitHub não encontrado: " + usernameGithub);
+        }
+
+        UserSummary resumo = new UserSummary();
+        resumo.id = detalhe.id;
+        resumo.login = detalhe.login;
+        resumo.avatarUrl = detalhe.avatarUrl;
+
+        List<RepoSummary> repos = gitHubService.buscarRepositorios(usernameGithub, 6);
+        return sincronizarCandidato(resumo, detalhe, repos);
+    }
+
     private Candidato sincronizarCandidato(UserSummary usuario, UserDetail detalhe, List<RepoSummary> repos) {
         Long nodeId = usuario.id; // usamos o id numérico do GitHub como node_id (BIGINT)
 

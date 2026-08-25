@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Perfil técnico completo do candidato, com repositórios e estatísticas do GitHub.">
-    <title>Perfil do Candidato - CKGD</title>
+    <meta name="description" content="Seu perfil técnico sincronizado do GitHub na CKGD.">
+    <title>Meu Perfil - CKGD</title>
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,17 +17,15 @@
 
     <aside class="sidebar" aria-label="Barra lateral">
         <div class="company-card">
-            <div class="logo" id="company-logo">--</div>
+            <div class="logo" id="candidato-logo">--</div>
             <div class="company-info">
-                <h1 id="company-name" class="company-name">Carregando...</h1>
-                <p class="company-location" id="company-location"></p>
+                <h1 id="candidato-nome" class="company-name">Carregando...</h1>
+                <p class="company-location" id="candidato-username"></p>
             </div>
         </div>
 
         <nav class="menu-card">
-            <a class="menu-item" href="favoritos.html"><i class="fa-solid fa-bookmark"></i> Salvos</a>
-            <a class="menu-item active" href="home.html"><i class="fa-solid fa-magnifying-glass"></i> Análises</a>
-            <a class="menu-item" href="config.html"><i class="fa-solid fa-gear"></i> Configurações</a>
+            <a class="menu-item active" href="meu-perfil.html"><i class="fa-solid fa-user"></i> Meu Perfil</a>
             <a class="menu-item" id="menu-suporte"><i class="fa-solid fa-headset"></i> Suporte</a>
             <a class="menu-item" id="menu-sair"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
         </nav>
@@ -35,10 +33,8 @@
 
     <main class="main-content">
 
-        <a href="home.html" id="btn-voltar"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
-
         <div id="perfil-carregando" class="status-center">
-            <h2 class="status-text">Carregando perfil...</h2>
+            <h2 class="status-text">Carregando seu perfil...</h2>
         </div>
 
         <div id="perfil-erro" class="status-center" style="display:none;">
@@ -48,7 +44,7 @@
         <div id="perfil-container" class="perfil-container" style="display:none;">
 
             <div class="perfil-header">
-                <img id="perfil-avatar" src="" alt="Avatar do candidato">
+                <img id="perfil-avatar" src="" alt="Seu avatar">
                 <div>
                     <h1 id="perfil-nome"></h1>
                     <p id="perfil-username" class="perfil-username"></p>
@@ -79,23 +75,12 @@
             <h2 class="repos-title">Repositórios</h2>
             <div id="perfil-repos-lista" class="repos-lista"></div>
 
-            <div class="perfil-acoes">
-                <label class="checkbox-privada">
-                    <input type="checkbox" id="input-privada" checked> Avaliação privada
-                </label>
-                <textarea id="input-comentario" placeholder="Adicionar uma avaliação privada sobre este candidato..."></textarea>
-                <div class="perfil-acoes-buttons">
-                    <button id="btn-descartar" class="btn btn-danger">Descartar</button>
-                    <button id="btn-salvar-perfil" class="btn btn-primary">Salvar Perfil</button>
-                </div>
-            </div>
-
         </div>
 
     </main>
 
     <script src="js/api.js"></script>
     <script src="js/suporte.js"></script>
-    <script src="js/perfil.js"></script>
+    <script src="js/meu-perfil.js"></script>
 </body>
 </html>

@@ -1,8 +1,10 @@
 package com.ckgd.controller;
 
+import com.ckgd.dto.AlterarSenhaRequest;
 import com.ckgd.dto.AtualizarEmpresaRequest;
 import com.ckgd.dto.EmpresaResponse;
 import com.ckgd.service.EmpresaService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,5 +44,13 @@ public class EmpresaController {
                                                            @RequestParam("arquivo") MultipartFile arquivo) {
         String cnpj = (String) authentication.getPrincipal();
         return ResponseEntity.ok(EmpresaResponse.from(empresaService.atualizarFoto(cnpj, arquivo)));
+    }
+
+    @PutMapping("/me/senha")
+    public ResponseEntity<Void> alterarSenha(Authentication authentication,
+                                              @Valid @RequestBody AlterarSenhaRequest request) {
+        String cnpj = (String) authentication.getPrincipal();
+        empresaService.alterarSenha(cnpj, request);
+        return ResponseEntity.noContent().build();
     }
 }

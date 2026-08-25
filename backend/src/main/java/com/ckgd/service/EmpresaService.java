@@ -1,5 +1,6 @@
 package com.ckgd.service;
 
+import com.ckgd.dto.AlterarSenhaRequest;
 import com.ckgd.dto.AtualizarEmpresaRequest;
 import com.ckgd.dto.AuthResponse;
 import com.ckgd.dto.CadastroEmpresaRequest;
@@ -90,8 +91,12 @@ public class EmpresaService {
 
         empresa = empresaRepository.save(empresa);
 
-        String token = jwtUtil.gerarToken(empresa.getCnpj());
-        return new AuthResponse(token, empresa.getCnpj(), empresa.getNomeEmpresa(), empresa.getEmail());
+        String token = jwtUtil.gerarToken(empresa.getCnpj(), "EMPRESA");
+        return new AuthResponse(token, "EMPRESA", empresa.getCnpj(), null, empresa.getNomeEmpresa(), empresa.getEmail());
+    }
+
+    public boolean existePorEmail(String email) {
+        return empresaRepository.existsByEmail(email);
     }
 
     public AuthResponse login(LoginRequest req) {
@@ -105,8 +110,8 @@ public class EmpresaService {
         Empresa empresa = empresaRepository.findByEmail(req.getEmail())
                 .orElseThrow(() -> new ResourceNotFoundException("Empresa não encontrada"));
 
-        String token = jwtUtil.gerarToken(empresa.getCnpj());
-        return new AuthResponse(token, empresa.getCnpj(), empresa.getNomeEmpresa(), empresa.getEmail());
+        String token = jwtUtil.gerarToken(empresa.getCnpj(), "EMPRESA");
+        return new AuthResponse(token, "EMPRESA", empresa.getCnpj(), null, empresa.getNomeEmpresa(), empresa.getEmail());
     }
 
     public Empresa buscarPorCnpj(String cnpj) {
@@ -163,6 +168,18 @@ public class EmpresaService {
 
         empresa.setFotoUrl("/uploads/empresas/" + cnpj + extensao);
         return empresaRepository.save(empresa);
+    }
+
+    @Transactional
+    public void alterarSenha(String cnpj, AlterarSenhaRequest req) {
+        Empresa empresa = buscarPorCnpj(cnpj);
+
+        if (!passwordEncoder.matches(req.getSenhaAtual(), empresa.getSenha())) {
+            throw new BusinessException("Senha atual incorreta");
+        }
+
+        empresa.setSenha(passwordEncoder.encode(req.getNovaSenha()));
+        empresaRepository.save(empresa);
     }
 
     @Transactional

@@ -1,4 +1,4 @@
-CkgdAPI.exigirAutenticacao();
+CkgdAPI.exigirAutenticacaoEmpresa();
 
 const fotoPreview = document.getElementById("foto-preview");
 const inputFoto = document.getElementById("input-foto");
@@ -110,7 +110,89 @@ function configurarItemEditavel(item) {
 document.querySelectorAll(".item-editable").forEach(configurarItemEditavel);
 
 document.getElementById("menu-suporte").addEventListener("click", () => {
-    alert("Suporte: contato@ckgd.com — em breve um canal dedicado por aqui.");
+    CkgdSuporte.abrirModal();
+});
+
+// --- Alterar senha ---
+document.getElementById("menu-alterar-senha").addEventListener("click", () => {
+    const overlay = document.createElement("div");
+    overlay.className = "ckgd-modal-overlay";
+    overlay.innerHTML = `
+        <div class="ckgd-modal-box">
+            <h3>Alterar senha</h3>
+            <p class="ckgd-modal-subtitle">Informe sua senha atual e a nova senha (mínimo 6 caracteres).</p>
+            <div class="ckgd-modal-field">
+                <label for="senha-atual">Senha atual</label>
+                <input type="password" id="senha-atual" autocomplete="current-password">
+            </div>
+            <div class="ckgd-modal-field">
+                <label for="senha-nova">Nova senha</label>
+                <input type="password" id="senha-nova" autocomplete="new-password" minlength="6">
+            </div>
+            <div class="ckgd-modal-field">
+                <label for="senha-confirmar">Confirmar nova senha</label>
+                <input type="password" id="senha-confirmar" autocomplete="new-password" minlength="6">
+            </div>
+            <p class="ckgd-modal-error" id="senha-erro"></p>
+            <div class="ckgd-modal-actions">
+                <button type="button" class="btn btn-secondary" id="senha-cancelar">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="senha-salvar">Salvar</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(overlay);
+
+    const inputAtual = overlay.querySelector("#senha-atual");
+    const inputNova = overlay.querySelector("#senha-nova");
+    const inputConfirmar = overlay.querySelector("#senha-confirmar");
+    const erro = overlay.querySelector("#senha-erro");
+    const btnSalvar = overlay.querySelector("#senha-salvar");
+
+    function fechar() { overlay.remove(); }
+
+    overlay.addEventListener("click", (e) => { if (e.target === overlay) fechar(); });
+    overlay.querySelector("#senha-cancelar").addEventListener("click", fechar);
+
+    btnSalvar.addEventListener("click", async () => {
+        const senhaAtual = inputAtual.value;
+        const novaSenha = inputNova.value;
+        const confirmar = inputConfirmar.value;
+
+        if (!senhaAtual || !novaSenha || !confirmar) {
+            erro.textContent = "Preencha todos os campos.";
+            return;
+        }
+        if (novaSenha.length < 6) {
+            erro.textContent = "A nova senha deve ter ao menos 6 caracteres.";
+            return;
+        }
+        if (novaSenha !== confirmar) {
+            erro.textContent = "A confirmação não confere com a nova senha.";
+            return;
+        }
+
+        erro.textContent = "";
+        btnSalvar.disabled = true;
+        btnSalvar.textContent = "Salvando...";
+
+        try {
+            await CkgdAPI.alterarSenha({ senhaAtual, novaSenha });
+            overlay.querySelector(".ckgd-modal-box").innerHTML = `
+                <h3>Senha alterada!</h3>
+                <p class="ckgd-modal-subtitle">Sua senha foi atualizada com sucesso.</p>
+                <div class="ckgd-modal-actions">
+                    <button type="button" class="btn btn-primary" id="senha-fechar">Fechar</button>
+                </div>
+            `;
+            overlay.querySelector("#senha-fechar").addEventListener("click", fechar);
+        } catch (err) {
+            erro.textContent = err.message;
+            btnSalvar.disabled = false;
+            btnSalvar.textContent = "Salvar";
+        }
+    });
+
+    inputAtual.focus();
 });
 
 document.getElementById("menu-assinatura").addEventListener("click", async () => {

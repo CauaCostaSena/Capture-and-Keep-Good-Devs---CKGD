@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Crie sua conta de candidato na CKGD e deixe seu perfil técnico do GitHub visível para empresas.">
+    <title>Cadastro de Candidato - CKGD</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/cadastro.css">
+</head>
+<body>
+
+    <main id="main.cadastro">
+        <div id="container-cadastro">
+
+            <div id="left-panel-cadastro">
+                <div id="cadastro-box">
+
+                    <div class="brand brand-center">
+                        <span class="brand-mark" aria-hidden="true">C</span>
+                        <span class="brand-name">CKGD</span>
+                    </div>
+
+                    <h2 id="cadastro-title">Cadastro de Candidato</h2>
+                    <p id="cadastro-subtitle">Crie sua conta e deixe seu perfil técnico do GitHub visível para empresas.</p>
+
+                    <form id="form-cadastro-candidato">
+
+                        <div class="input-group">
+                            <label for="input-nome">Nome completo *</label>
+                            <input type="text" id="input-nome" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="input-username-github">Usuário do GitHub *</label>
+                            <input type="text" id="input-username-github" placeholder="ex: octocat" required>
+                        </div>
+
+                        <div class="grid-2">
+                            <div class="input-group">
+                                <label for="input-email">E-mail *</label>
+                                <input type="email" id="input-email" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="input-senha">Senha *</label>
+                                <input type="password" id="input-senha" required minlength="6">
+                            </div>
+                        </div>
+
+                        <button type="submit" id="btn-finalizar-cadastro" class="btn btn-primary btn-block">Finalizar Cadastro</button>
+                        <a href="cadastro.html" class="link-secundario">Sou uma empresa — Criar conta de empresa</a>
+                        <a href="index.html" class="link-secundario">Já tenho conta — Voltar ao Login</a>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer id="footer">
+        <p>&copy; 2026 CKGD — Capture and Keep Good Devs</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/cadastro-candidato.js"></script>
+</body>
+</html>

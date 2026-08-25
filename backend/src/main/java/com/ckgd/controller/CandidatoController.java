@@ -21,4 +21,10 @@ public class CandidatoController {
         String cnpj = (String) authentication.getPrincipal();
         return ResponseEntity.ok(candidatoService.buscarPerfilCompleto(nodeId, cnpj));
     }
+
+    @GetMapping("/me")
+    public ResponseEntity<CandidatoResponse> meuPerfil(Authentication authentication) {
+        Long nodeId = Long.valueOf((String) authentication.getPrincipal());
+        return ResponseEntity.ok(candidatoService.buscarPerfilCompleto(nodeId, null));
+    }
 }

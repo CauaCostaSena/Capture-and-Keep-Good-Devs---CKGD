@@ -62,7 +62,9 @@ CREATE TABLE candidato (
     avatar_url             VARCHAR(255) NULL,
     linguagem_principal    VARCHAR(60)  NULL,
     data_ultima_sincronizacao DATETIME  NOT NULL DEFAULT CURRENT_TIMESTAMP
-                                ON UPDATE CURRENT_TIMESTAMP
+                                ON UPDATE CURRENT_TIMESTAMP,
+    email                 VARCHAR(150)  NULL UNIQUE,          -- preenchido apenas se o candidato se autocadastrar
+    senha                 VARCHAR(255)  NULL                  -- hash (BCrypt); nulo para candidatos só sincronizados via busca
 ) ENGINE=InnoDB;
 
 -- ============================================================================
@@ -135,6 +137,20 @@ CREATE TABLE empresa_candidato (
 ) ENGINE=InnoDB;
 
 -- ============================================================================
+-- TABELA: SOLICITACAO_SUPORTE
+-- Mensagens de contato enviadas por empresas ou candidatos autenticados
+-- ============================================================================
+CREATE TABLE solicitacao_suporte (
+    id_solicitacao        BIGINT AUTO_INCREMENT PRIMARY KEY,
+    tipo_solicitante        VARCHAR(20)  NOT NULL,             -- EMPRESA ou CANDIDATO
+    nome_solicitante        VARCHAR(150) NOT NULL,
+    email_solicitante       VARCHAR(150) NOT NULL,
+    assunto                  VARCHAR(150) NOT NULL,
+    mensagem                  TEXT        NOT NULL,
+    data_criacao                DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- ============================================================================
 -- ÍNDICES de apoio para buscas e filtros
 -- ============================================================================
 CREATE INDEX idx_candidato_localizacao ON candidato(localizacao);
@@ -142,3 +158,4 @@ CREATE INDEX idx_candidato_linguagem ON candidato(linguagem_principal);
 CREATE INDEX idx_repositorio_linguagem ON repositorio(linguagem_principal);
 CREATE INDEX idx_busca_termo ON busca(termo_pesquisado);
 CREATE INDEX idx_empresa_email ON empresa(email);
+CREATE INDEX idx_candidato_email ON candidato(email);

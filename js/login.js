@@ -2,14 +2,19 @@ const inputUsuario = document.getElementById("input-usuario"); // e-mail
 const inputSenha = document.getElementById("input-senha");
 const botaoLogin = document.getElementById("btn-login");
 const botaoCadastro = document.getElementById("btn-cadastro");
+const botaoCadastroCandidato = document.getElementById("btn-cadastro-candidato");
 
-// Se já existe sessão ativa, vai direto para a home
+// Se já existe sessão ativa, vai direto para a área correta
 if (CkgdAPI.isAutenticado()) {
-    window.location.href = "home.html";
+    window.location.href = CkgdAPI.isCandidatoLogado() ? "meu-perfil.html" : "home.html";
 }
 
 botaoCadastro.addEventListener("click", function () {
     window.location.href = "cadastro.html";
+});
+
+botaoCadastroCandidato.addEventListener("click", function () {
+    window.location.href = "cadastro-candidato.html";
 });
 
 botaoLogin.addEventListener("click", async function () {
@@ -27,7 +32,7 @@ botaoLogin.addEventListener("click", async function () {
     try {
         const auth = await CkgdAPI.login(email, senha);
         CkgdAPI.salvarSessao(auth);
-        window.location.href = "home.html";
+        window.location.href = auth.tipo === "CANDIDATO" ? "meu-perfil.html" : "home.html";
     } catch (err) {
         alert(err.message);
     } finally {

@@ -20,10 +20,19 @@ public class CadastroEmpresaRequest {
     @NotBlank(message = "Senha é obrigatória")
     private String senha;
 
+    @NotBlank(message = "País é obrigatório")
     private String pais;
+
+    @NotBlank(message = "Estado é obrigatório")
     private String estado;
+
+    @NotBlank(message = "Cidade é obrigatória")
     private String cidade;
+
+    @NotBlank(message = "Bairro é obrigatório")
     private String bairro;
+
+    @NotBlank(message = "Endereço é obrigatório")
     private String endereco;
 
     private Integer idPlano; // opcional; se ausente, usa o plano Free padrão

@@ -1,4 +1,4 @@
-CkgdAPI.exigirAutenticacao();
+CkgdAPI.exigirAutenticacaoEmpresa();
 
 const companyName = document.getElementById("company-name");
 const companyLocation = document.getElementById("company-location");
@@ -54,7 +54,7 @@ document.getElementById("menu-sair").addEventListener("click", () => {
 });
 
 document.getElementById("menu-suporte").addEventListener("click", () => {
-    alert("Suporte: contato@ckgd.com — em breve um canal dedicado por aqui.");
+    CkgdSuporte.abrirModal();
 });
 
 carregarDadosEmpresa();

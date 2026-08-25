@@ -1,7 +1,6 @@
 package com.ckgd.security;
 
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -22,25 +21,37 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(secret.getBytes());
     }
 
-    public String gerarToken(String cnpj) {
+    public String gerarToken(String subject, String tipo) {
         Date agora = new Date();
         Date expiracao = new Date(agora.getTime() + expirationMs);
 
         return Jwts.builder()
-                .subject(cnpj)
+                .subject(subject)
+                .claim("tipo", tipo)
                 .issuedAt(agora)
                 .expiration(expiracao)
-                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
+                .signWith(getSigningKey())
                 .compact();
     }
 
-    public String extrairCnpj(String token) {
+    public String extrairSubject(String token) {
         return Jwts.parser()
                 .verifyWith(getSigningKey())
                 .build()
                 .parseSignedClaims(token)
                 .getPayload()
                 .getSubject();
+    }
+
+    /** Tipo do usuário autenticado (EMPRESA ou CANDIDATO). Assume EMPRESA para tokens antigos sem essa claim. */
+    public String extrairTipo(String token) {
+        Object tipo = Jwts.parser()
+                .verifyWith(getSigningKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload()
+                .get("tipo");
+        return tipo != null ? tipo.toString() : "EMPRESA";
     }
 
     public boolean validarToken(String token) {

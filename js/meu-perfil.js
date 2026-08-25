@@ -1,27 +1,13 @@
-CkgdAPI.exigirAutenticacaoEmpresa();
+CkgdAPI.exigirAutenticacao();
 
-const params = new URLSearchParams(window.location.search);
-const nodeId = params.get("nodeId");
-
-const companyName = document.getElementById("company-name");
-const companyLocation = document.getElementById("company-location");
-const companyLogo = document.getElementById("company-logo");
+if (!CkgdAPI.isCandidatoLogado()) {
+    window.location.href = "home.html";
+}
 
 const perfilCarregando = document.getElementById("perfil-carregando");
 const perfilErro = document.getElementById("perfil-erro");
 const perfilErroMsg = document.getElementById("perfil-erro-msg");
 const perfilContainer = document.getElementById("perfil-container");
-
-async function carregarDadosEmpresa() {
-    try {
-        const empresa = await CkgdAPI.meusDados();
-        companyName.textContent = empresa.nomeEmpresa;
-        companyLocation.textContent = [empresa.cidade, empresa.estado, empresa.pais].filter(Boolean).join(", ");
-        CkgdAPI.aplicarLogo(companyLogo, empresa);
-    } catch (err) {
-        companyName.textContent = CkgdAPI.nomeEmpresaLogada() || "Minha Empresa";
-    }
-}
 
 function renderRepos(repos) {
     const lista = document.getElementById("perfil-repos-lista");
@@ -49,15 +35,19 @@ function renderRepos(repos) {
 }
 
 async function carregarPerfil() {
-    if (!nodeId) {
-        perfilErroMsg.textContent = "Candidato não especificado.";
-        perfilCarregando.style.display = "none";
-        perfilErro.style.display = "flex";
-        return;
-    }
-
     try {
-        const c = await CkgdAPI.perfilCandidato(nodeId);
+        const c = await CkgdAPI.meuPerfilCandidato();
+
+        const logo = document.getElementById("candidato-logo");
+        if (c.avatarUrl) {
+            logo.style.backgroundImage = `url('${c.avatarUrl}')`;
+            logo.classList.add("has-photo");
+            logo.textContent = "";
+        } else {
+            logo.textContent = (c.nomeCandidato || c.username).substring(0, 3).toUpperCase();
+        }
+        document.getElementById("candidato-nome").textContent = c.nomeCandidato || c.username;
+        document.getElementById("candidato-username").textContent = "@" + c.username;
 
         document.getElementById("perfil-avatar").src = c.avatarUrl || "https://avatars.githubusercontent.com/u/0?v=4";
         document.getElementById("perfil-nome").textContent = c.nomeCandidato || c.username;
@@ -80,8 +70,6 @@ async function carregarPerfil() {
 
         renderRepos(c.repositorios);
 
-        document.getElementById("input-comentario").dataset.nodeId = c.nodeId;
-
         perfilCarregando.style.display = "none";
         perfilContainer.style.display = "block";
     } catch (err) {
@@ -90,38 +78,6 @@ async function carregarPerfil() {
         perfilErro.style.display = "flex";
     }
 }
-
-document.getElementById("btn-salvar-perfil").addEventListener("click", async () => {
-    const comentario = document.getElementById("input-comentario").value.trim();
-    const privada = document.getElementById("input-privada").checked;
-    const btn = document.getElementById("btn-salvar-perfil");
-
-    btn.disabled = true;
-    btn.textContent = "Salvando...";
-
-    try {
-        await CkgdAPI.salvarAvaliacao(nodeId, {
-            favorito: true,
-            comentario: comentario || null,
-            privada
-        });
-        alert("Perfil salvo nos favoritos com sucesso!");
-    } catch (err) {
-        alert(err.message);
-    } finally {
-        btn.disabled = false;
-        btn.textContent = "Salvar Perfil";
-    }
-});
-
-document.getElementById("btn-descartar").addEventListener("click", async () => {
-    try {
-        await CkgdAPI.removerFavorito(nodeId);
-    } catch (err) {
-        // segue mesmo se não havia favorito
-    }
-    window.location.href = "home.html";
-});
 
 document.getElementById("menu-sair").addEventListener("click", () => {
     CkgdAPI.encerrarSessao();
@@ -132,5 +88,4 @@ document.getElementById("menu-suporte").addEventListener("click", () => {
     CkgdSuporte.abrirModal();
 });
 
-carregarDadosEmpresa();
 carregarPerfil();

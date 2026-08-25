@@ -16,9 +16,9 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Filtro de autenticação via JWT. O "subject" do token é o CNPJ da empresa,
- * que passa a ser o principal da Authentication (usado pelos controllers via
- * Authentication#getPrincipal()).
+ * Filtro de autenticação via JWT. O "subject" do token é o CNPJ da empresa ou o
+ * node_id do candidato (conforme a claim "tipo"), que passa a ser o principal
+ * da Authentication (usado pelos controllers via Authentication#getPrincipal()).
  */
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
@@ -40,11 +40,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             String token = authHeader.substring(7);
 
             if (jwtUtil.validarToken(token)) {
-                String cnpj = jwtUtil.extrairCnpj(token);
+                String subject = jwtUtil.extrairSubject(token);
+                String tipo = jwtUtil.extrairTipo(token);
+                String role = "CANDIDATO".equals(tipo) ? "ROLE_CANDIDATO" : "ROLE_EMPRESA";
 
                 if (SecurityContextHolder.getContext().getAuthentication() == null) {
-                    var authToken = new UsernamePasswordAuthenticationToken(cnpj, null,
-                            List.of(new SimpleGrantedAuthority("ROLE_EMPRESA")));
+                    var authToken = new UsernamePasswordAuthenticationToken(subject, null,
+                            List.of(new SimpleGrantedAuthority(role)));
                     authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authToken);
                 }
